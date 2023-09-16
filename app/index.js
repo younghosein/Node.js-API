@@ -1,4 +1,6 @@
-const http = require('http');
+const express = require ('express');
+
+const app = express();
 
 module.exports = class Application {
     constructor() {
@@ -6,15 +8,12 @@ module.exports = class Application {
     }
 
     configServer() {
-        const server = http.createServer((req, res) => {
-            res.setHeader('node.js', {
-                'content-type': 'text/html'
-            })
-
-            res.end('<h1>THIS IS A TEXT</h1>')
+        app.get('/',(req, res)=> {
+            res.end('<h1>THIS IS HOME ROUTE</h1>')
         })
 
-        server.listen(3000, (err) => {
+
+        app.listen(3000, (err) => {
             if (err) console.log(err)
             console.log('SERVER RUN ON PORT 3000')
         })
